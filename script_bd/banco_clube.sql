@@ -2,7 +2,7 @@ CREATE DATABASE club_bd_ap2
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE UTF8_GENERAL_CI;
 
-USE clube_bd_ap2;
+USE club_bd_ap2;
 
 CREATE TABLE times(
 	cod_time BIGINT AUTO_INCREMENT,
@@ -19,7 +19,7 @@ CREATE TABLE times(
 
 CREATE TABLE associado (
 	id BIGINT NOT NULL AUTO_INCREMENT, 
-    cpf VARCHAR(255) NOT NULL,
+    cpf VARCHAR(255) NOT NULL UNIQUE,
     nome VARCHAR(50) NOT NULL,
     sobrenome VARCHAR(50),
     data_nascimento DATE,
