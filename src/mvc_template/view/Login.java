@@ -66,6 +66,7 @@ public class Login extends javax.swing.JFrame {
         lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/statusd.png"))); // NOI18N
 
         jButton1.setText("Logar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/logopequena.png"))); // NOI18N
 
