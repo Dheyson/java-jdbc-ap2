@@ -29,21 +29,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mainCadastro = new javax.swing.JMenu();
         mainCadUsuarios = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        cadAssociados = new javax.swing.JMenuItem();
+        cadTecnicos = new javax.swing.JMenuItem();
+        cadEsportes = new javax.swing.JMenuItem();
+        mainOpcoes = new javax.swing.JMenu();
+        mudarIdioma = new javax.swing.JMenuItem();
+        fecharTela = new javax.swing.JMenuItem();
+        mainAjuda = new javax.swing.JMenu();
+        materialAjuda = new javax.swing.JMenuItem();
+        mainSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
         setResizable(false);
+
+        jDesktopPane1.setToolTipText("tela de apresentações");
+        jDesktopPane1.setMaximumSize(new java.awt.Dimension(442, 355));
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -56,8 +59,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 430, Short.MAX_VALUE)
         );
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/user_green.png"))); // NOI18N
-        jMenu1.setText("Cadastro");
+        mainCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/user_green.png"))); // NOI18N
+        mainCadastro.setText("Cadastro");
 
         mainCadUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
         mainCadUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/user_orange.png"))); // NOI18N
@@ -67,59 +70,59 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 mainCadUsuariosActionPerformed(evt);
             }
         });
-        jMenu1.add(mainCadUsuarios);
+        mainCadastro.add(mainCadUsuarios);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/specialist-user.png"))); // NOI18N
-        jMenuItem5.setText("Associados");
-        jMenu1.add(jMenuItem5);
+        cadAssociados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
+        cadAssociados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/specialist-user.png"))); // NOI18N
+        cadAssociados.setText("Associados");
+        mainCadastro.add(cadAssociados);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/user_suit.png"))); // NOI18N
-        jMenuItem6.setText("Técnico");
-        jMenu1.add(jMenuItem6);
+        cadTecnicos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
+        cadTecnicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/user_suit.png"))); // NOI18N
+        cadTecnicos.setText("Técnico");
+        mainCadastro.add(cadTecnicos);
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/sport_soccer.png"))); // NOI18N
-        jMenuItem7.setText("Esportes");
-        jMenu1.add(jMenuItem7);
+        cadEsportes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
+        cadEsportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/sport_soccer.png"))); // NOI18N
+        cadEsportes.setText("Esportes");
+        mainCadastro.add(cadEsportes);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mainCadastro);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/wrench.png"))); // NOI18N
-        jMenu3.setText("Opções");
+        mainOpcoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/wrench.png"))); // NOI18N
+        mainOpcoes.setText("Opções");
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/translation.png"))); // NOI18N
-        jMenuItem3.setText("Mudar idioma");
-        jMenu3.add(jMenuItem3);
+        mudarIdioma.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.ALT_MASK));
+        mudarIdioma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/translation.png"))); // NOI18N
+        mudarIdioma.setText("Mudar idioma");
+        mainOpcoes.add(mudarIdioma);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/logout.png"))); // NOI18N
-        jMenuItem4.setText("Sair");
-        jMenu3.add(jMenuItem4);
+        fecharTela.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        fecharTela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/logout.png"))); // NOI18N
+        fecharTela.setText("Sair");
+        mainOpcoes.add(fecharTela);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mainOpcoes);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/help.png"))); // NOI18N
-        jMenu4.setText("Ajuda");
+        mainAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/help.png"))); // NOI18N
+        mainAjuda.setText("Ajuda");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/book.png"))); // NOI18N
-        jMenuItem1.setText("Material de Ajuda");
-        jMenu4.add(jMenuItem1);
+        materialAjuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, java.awt.event.InputEvent.ALT_MASK));
+        materialAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/book.png"))); // NOI18N
+        materialAjuda.setText("Material de Ajuda");
+        mainAjuda.add(materialAjuda);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/information.png"))); // NOI18N
-        jMenuItem2.setText("Sobre");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mainSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.ALT_MASK));
+        mainSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/information.png"))); // NOI18N
+        mainSobre.setText("Sobre");
+        mainSobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mainSobreActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem2);
+        mainAjuda.add(mainSobre);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(mainAjuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -127,20 +130,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mainSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSobreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mainSobreActionPerformed
 
     private void mainCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainCadUsuariosActionPerformed
         // TODO add your handling code here:
@@ -186,18 +189,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem cadAssociados;
+    private javax.swing.JMenuItem cadEsportes;
+    private javax.swing.JMenuItem cadTecnicos;
+    private javax.swing.JMenuItem fecharTela;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenu mainAjuda;
     private javax.swing.JMenuItem mainCadUsuarios;
+    private javax.swing.JMenu mainCadastro;
+    private javax.swing.JMenu mainOpcoes;
+    private javax.swing.JMenuItem mainSobre;
+    private javax.swing.JMenuItem materialAjuda;
+    private javax.swing.JMenuItem mudarIdioma;
     // End of variables declaration//GEN-END:variables
 }
