@@ -4,6 +4,17 @@ DEFAULT COLLATE UTF8_GENERAL_CI;
 
 USE club_bd_ap2;
 
+create table tbusuarios(
+	userid SMALLINT UNIQUE NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(25) NOT NULL,
+    login VARCHAR(50) NOT NULL unique,
+    senha VARCHAR(50) NOT NULL,
+    active BOOLEAN DEFAULT TRUE,
+    PRIMARY KEY (userid),
+    
+    last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE times(
 	cod_time BIGINT AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
