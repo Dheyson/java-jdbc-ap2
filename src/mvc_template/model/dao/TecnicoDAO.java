@@ -7,7 +7,7 @@ package mvc_template.model.dao;
 
 /**
  *
- * @author DHEYSON
+ * 
  */
 public class TecnicoDAO {
     
