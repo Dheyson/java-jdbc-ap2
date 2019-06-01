@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class Campeonato {
     
+    private int id;
     private int edicao;
     private Date data_camp;
 

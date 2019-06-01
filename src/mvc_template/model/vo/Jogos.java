@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class Jogos {
     
+    private int id;
     private Date data;
     private LocalTime tempo;
 

@@ -6,11 +6,13 @@ package mvc_template.model.vo;
  */
 public class Tecnico {
     
-    
+    private int id;
     private String nome;
     private String sobrenome;
     private String especializacao;
 
+    
+    
     public String getNome() {
         return nome;
     }
@@ -33,6 +35,20 @@ public class Tecnico {
 
     public void setEspecializacao(String especializacao) {
         this.especializacao = especializacao;
+    }
+
+    /**
+     * @return the registro
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param registro the registro to set
+     */
+    public void setID(int registro) {
+        this.id = registro;
     }
     
     

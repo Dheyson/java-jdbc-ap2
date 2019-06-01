@@ -6,6 +6,7 @@ package mvc_template.model.vo;
  */
 public class Esporte {
     
+    private int id; 
     private String nome;
     private int quantidade_pessoas;
 

@@ -8,7 +8,7 @@ import java.time.LocalTime;
  */
 public class Escala {
     
-    
+    private int id;
     private LocalTime tempo;
     
     

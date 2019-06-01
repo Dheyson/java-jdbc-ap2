@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class Treino {
     
+    private int id;
     private Date dia;
     private String turno;
     private int tecnico_id;
