@@ -5,10 +5,15 @@
  */
 package mvc_template.view;
 
-// import connection.ConnectionFactory;
+import connection.ConnectionFactory;
+import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,14 +27,45 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
-        // con = ConnectionFactory.getConnection();
+         con = ConnectionFactory.getConnection();
         if (con != null) {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/statusc.png")));
         } else {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/statusd.png")));
         }
     }
-
+    
+   public void Logar() {
+       String sql = "SELECT * FROM tbusuarios WHERE login=? and senha=?";
+       
+       try {
+            con.setAutoCommit(false);
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, jUsuarioLogin.getText());
+            stmt.setString(2, String.valueOf(jSenhaLogin.getPassword()));
+            
+            rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                TelaPrincipal main = new TelaPrincipal();
+                main.setVisible(true);
+                this.dispose();
+            } else {
+                JFrame jf = new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, "Usuario e/ou Senha inválido(s)");
+            }
+            
+            stmt.close();
+            
+       } catch (HeadlessException | SecurityException | SQLException e) {
+           System.err.println(e);
+            JFrame jf = new JFrame();
+                    jf.setAlwaysOnTop(true);
+                    JOptionPane.showMessageDialog(jf, "Você está desconectado(a)!");
+       }
+   }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,10 +77,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jUsuarioLogin = new javax.swing.JTextField();
         lblStatus = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jBotaoLogin = new javax.swing.JButton();
+        jSenhaLogin = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,16 +93,27 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("sansserif", 0, 13)); // NOI18N
         jLabel2.setText("Senha:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jUsuarioLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jUsuarioLoginActionPerformed(evt);
             }
         });
 
         lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/statusd.png"))); // NOI18N
 
-        jButton1.setText("Logar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBotaoLogin.setText("Logar");
+        jBotaoLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBotaoLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotaoLoginActionPerformed(evt);
+            }
+        });
+
+        jSenhaLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jSenhaLoginKeyPressed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/logopequena.png"))); // NOI18N
 
@@ -85,17 +132,17 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jUsuarioLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(69, 69, 69))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(lblStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jBotaoLogin)
                 .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
@@ -105,15 +152,15 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jUsuarioLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(jBotaoLogin)
                     .addComponent(lblStatus))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -122,9 +169,19 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void jUsuarioLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsuarioLoginActionPerformed
+    }//GEN-LAST:event_jUsuarioLoginActionPerformed
+
+    private void jSenhaLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSenhaLoginKeyPressed
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Logar();
+        }
+    }//GEN-LAST:event_jSenhaLoginKeyPressed
+
+    private void jBotaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoLoginActionPerformed
+        Logar();
+    }//GEN-LAST:event_jBotaoLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,12 +219,12 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBotaoLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField jSenhaLogin;
+    private javax.swing.JTextField jUsuarioLogin;
     private javax.swing.JLabel lblStatus;
     // End of variables declaration//GEN-END:variables
 }

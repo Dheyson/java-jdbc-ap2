@@ -14,9 +14,9 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     
     private static final String DRIVER = "com.mysql.jdbc.Driver"; 
-    private static final String URL = "jdbc:mysql://localhost:3306/club_bd_ap2"+"?useTimezone=true&serverTimezone=UTC";//PROTOCOLO DE COMUNICAÇÃO
-    private static final String USER = "root"; // MEU USUARIO - ALTERAR AQUI
-    private static final String PASS = "password"; // MINHA SENHA - ALTERAR AQUI
+    private static final String URL    = "jdbc:mysql://localhost:3306/club_bd_ap2"+"?useTimezone=true&serverTimezone=UTC";//PROTOCOLO DE COMUNICAÇÃO
+    private static final String USER   = "root"; // MEU USUARIO - ALTERAR AQUI
+    private static final String PASS   = "password"; // MINHA SENHA - ALTERAR AQUI
     
     public static Connection getConnection() {
         
