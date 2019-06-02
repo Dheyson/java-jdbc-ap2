@@ -5,7 +5,10 @@
  */
 package mvc_template.view;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import mvc_template.model.dao.UsuarioDAO;
+import mvc_template.model.vo.Usuario;
 
 /**
  *
@@ -39,7 +42,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         txtCadNomeUsuario = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBotaoDeletarUsuario = new javax.swing.JButton();
         jBotaoCadUsuario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbUsuario = new javax.swing.JTable();
@@ -74,8 +77,13 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/create-new-pencil-button.png"))); // NOI18N
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/close-browser.png"))); // NOI18N
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBotaoDeletarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/close-browser.png"))); // NOI18N
+        jBotaoDeletarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBotaoDeletarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotaoDeletarUsuarioActionPerformed(evt);
+            }
+        });
 
         jBotaoCadUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/add-button-inside-black-circle(1).png"))); // NOI18N
         jBotaoCadUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -106,9 +114,9 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                         .addComponent(jBotaoCadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(86, 86, 86)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13))
+                        .addGap(95, 95, 95)
+                        .addComponent(jBotaoDeletarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(106, 106, 106)
@@ -160,7 +168,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBotaoCadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBotaoDeletarUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -184,16 +192,37 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
     private void jBotaoCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoCadUsuarioActionPerformed
         
-        DefaultTableModel dtnUsuarios = (DefaultTableModel) jTbUsuario.getModel();
-        Object[] dados = {txtUsuId.getText(), txtCadNomeUsuario.getText(), txtCadUsuario.getText()};
-        dtnUsuarios.addRow(dados);
+        Usuario u = new Usuario();
+        UsuarioDAO dao = new UsuarioDAO();
+        u.setNome(txtCadNomeUsuario.getText());
+        u.setLogin(txtCadUsuario.getText());
+        u.setSenha(String.valueOf(txtCadSenha.getPassword()));
+        
+        dao.create(u);
+//        DefaultTableModel dtnUsuarios = (DefaultTableModel) jTbUsuario.getModel();
+//        Object[] dados = {txtUsuId.getText(), txtCadNomeUsuario.getText(), txtCadUsuario.getText()};
+//        dtnUsuarios.addRow(dados);
     }//GEN-LAST:event_jBotaoCadUsuarioActionPerformed
+
+    private void jBotaoDeletarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoDeletarUsuarioActionPerformed
+        
+        if (jTbUsuario.getSelectedRow() != -1) {
+            DefaultTableModel dtnUsuarios = (DefaultTableModel) jTbUsuario.getModel();
+            dtnUsuarios.removeRow(jTbUsuario.getSelectedRow());
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um usuario para excluir. ");
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jBotaoDeletarUsuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBotaoCadUsuario;
+    private javax.swing.JButton jBotaoDeletarUsuario;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

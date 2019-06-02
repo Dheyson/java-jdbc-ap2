@@ -35,10 +35,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cadTecnicos = new javax.swing.JMenuItem();
         cadEsportes = new javax.swing.JMenuItem();
         mainOpcoes = new javax.swing.JMenu();
-        mudarIdioma = new javax.swing.JMenuItem();
         fecharTela = new javax.swing.JMenuItem();
         mainAjuda = new javax.swing.JMenu();
-        materialAjuda = new javax.swing.JMenuItem();
         mainSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,7 +58,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
 
         mainCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/user_green.png"))); // NOI18N
-        mainCadastro.setText("Cadastro");
+        mainCadastro.setText("Tabelas");
 
         mainCadUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
         mainCadUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/user_orange.png"))); // NOI18N
@@ -92,11 +90,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mainOpcoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/wrench.png"))); // NOI18N
         mainOpcoes.setText("Opções");
 
-        mudarIdioma.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.ALT_MASK));
-        mudarIdioma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/translation.png"))); // NOI18N
-        mudarIdioma.setText("Mudar idioma");
-        mainOpcoes.add(mudarIdioma);
-
         fecharTela.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         fecharTela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/logout.png"))); // NOI18N
         fecharTela.setText("Sair");
@@ -106,11 +99,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         mainAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/help.png"))); // NOI18N
         mainAjuda.setText("Ajuda");
-
-        materialAjuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, java.awt.event.InputEvent.ALT_MASK));
-        materialAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/book.png"))); // NOI18N
-        materialAjuda.setText("Material de Ajuda");
-        mainAjuda.add(materialAjuda);
 
         mainSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.ALT_MASK));
         mainSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/information.png"))); // NOI18N
@@ -200,7 +188,5 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu mainCadastro;
     private javax.swing.JMenu mainOpcoes;
     private javax.swing.JMenuItem mainSobre;
-    private javax.swing.JMenuItem materialAjuda;
-    private javax.swing.JMenuItem mudarIdioma;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,7 @@ create table tbusuarios(
 );
 
 CREATE TABLE times(
-	cod_time BIGINT AUTO_INCREMENT,
+	cod_time SMALLINT AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     camp_id INT NOT NULL,
     
@@ -29,8 +29,8 @@ CREATE TABLE times(
 );
 
 CREATE TABLE associado (
-	id BIGINT NOT NULL AUTO_INCREMENT, 
-    cpf VARCHAR(255) NOT NULL UNIQUE,
+	id SMALLINT NOT NULL AUTO_INCREMENT, 
+    cpf VARCHAR(15) NOT NULL UNIQUE,
     nome VARCHAR(50) NOT NULL,
     sobrenome VARCHAR(50),
     data_nascimento DATE,
@@ -192,7 +192,7 @@ CREATE TABLE escala_dias_livres(
 );
 
 CREATE TABLE campeonato (
-	cod_camp BIGINT NOT NULL AUTO_INCREMENT,
+	cod_camp SMALLINT NOT NULL AUTO_INCREMENT,
     edicao SMALLINT,
     data_camp DATE,
     
