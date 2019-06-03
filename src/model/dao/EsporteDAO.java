@@ -1,112 +1,110 @@
-package mvc_template.model.dao;
+package model.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.connection.ConnectionFactory;
-import mvc_template.model.vo.Jogo;
+import model.vo.Esporte;
 
 
 
-public class JogoDAO {
-    
-
-    public boolean insert( Jogo jogo ) {
+public class EsporteDAO {
+   
+    public boolean insert( Esporte esp ) {
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         
         try {
-            String slq = "INSERT INTO jogos ( data_camp, hora ) VALUES( ?, ? )";
+            String slq = "INSERT INTO esporte ( nome, qtd_pessoas ) VALUES( ?, ? )";
             stmt = conn.prepareCall(slq);
             
-                stmt.setDate( 1, (Date) jogo.getData());
-                stmt.setTimestamp( 2, jogo.getTempo());
+                stmt.setString( 1, esp.getNome());
+                stmt.setInt( 2, esp.getQuantidade_pessoas());
 
             return !stmt.execute();
             
         } catch (SQLException ex) {
-            throw new RuntimeException( "ERRO AO SALVAR JOGO: ", ex );
+            throw new RuntimeException( "ERRO AO SALVAR ESPORTE: ", ex );
         } finally {
             ConnectionFactory.closeConnection( conn, stmt );
         }    
     }
     
-    public boolean delete( Jogo jogo ) {
+    public boolean delete( Esporte esp ) {
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         
         try {
             
-            String sql = "DELETE FROM jogos WHERE id = ?";
+            String sql = "DELETE FROM esporte WHERE esporte_cod = ?";
             stmt = conn.prepareCall(sql);
-                stmt.setInt( 1 , jogo.getId());
+                stmt.setInt( 1 , esp.getId());
                 
             return !stmt.execute();
             
         } catch ( SQLException ex ) {
-            throw new RuntimeException( "ERRO AO DELETAR JOGO: ", ex ); 
+            throw new RuntimeException( "ERRO AO DELETAR ESPORTE: ", ex ); 
         } finally {
             ConnectionFactory.closeConnection( conn, stmt );
         } 
     }
     
-    public boolean  upDate( Jogo jogo ){
+    public boolean  upDate( Esporte esp ){
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         
         try {
             
-            String sql = "UPDATE jogos SET data_camp = ?, hora = ?";
+            String sql = "UPDATE esporte SET nome = ?, qtd_pessoas = ?";
             stmt = conn.prepareCall(sql);
             
-                stmt.setDate( 1, (Date) jogo.getData());
-                stmt.setTimestamp( 2, jogo.getTempo());
+                stmt.setString( 1, esp.getNome());
+                stmt.setInt( 2, esp.getQuantidade_pessoas());
 
             stmt.executeUpdate();
             return true;
             
         } catch (SQLException ex) {
-            throw new RuntimeException( "ERRO AO ATUALIZAR JOGO: ", ex );
+            throw new RuntimeException( "ERRO AO ATUALIZAR ESPORTE: ", ex );
         } finally {
             ConnectionFactory.closeConnection( conn, stmt );
         } 
     }
     
-    public List<Jogo> listALL() {
+    public List<Esporte> listALL() {
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<Jogo> lista = new ArrayList<>();
+        List<Esporte> lista = new ArrayList<>();
         
         try {
             
-            String sql = "SELECT * FROM jogos";
+            String sql = "SELECT * FROM esporte";
             
             stmt = conn.prepareCall(sql);
             rs = stmt.executeQuery();
             
             while( rs.next() ) {
                 
-                Jogo j = new Jogo();
+                Esporte esp = new Esporte();
                 
-                j.setId( rs.getInt("cod_camp_id"));
-                j.setData( rs.getDate("data_camp"));
-                j.setTempo( rs.getTimestamp("hora"));
+                esp.setId( rs.getInt( "esporte_cod" ));
+                esp.setNome( rs.getString( "nome" ));
+                esp.setQuantidade_pessoas( rs.getInt( "qtd_pessoas" ));
                 
-                lista.add(j);
+                lista.add(esp);
             }
             
         } catch ( SQLException ex ) {
-            throw new RuntimeException( "ERRO AO LISTAR TODOS JOGO: ", ex );
+            throw new RuntimeException( "ERRO AO LISTAR TODOS ESPORTE: ", ex );
         } finally {
             ConnectionFactory.closeConnection( conn, stmt, rs );
         }
@@ -114,35 +112,35 @@ public class JogoDAO {
         return lista;
     } 
     
-    public Jogo listOne( String id ) {
+    public Esporte listOne( String id ) {
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        Jogo j = new Jogo();
+        Esporte esp = new Esporte();
         
         try {
             
-            String sql = "SELECT * FROM jogos WHERE cod_camp_id = ?";
+            String sql = "SELECT * FROM esporte WHERE esporte_cod = ?";
             
             stmt = conn.prepareCall(sql);
                 stmt.setString( 1, id );
                 
             rs = stmt.executeQuery();
             
-                j.setId( rs.getInt("cod_camp_id"));
-                j.setData( rs.getDate("data_camp"));
-                j.setTempo( rs.getTimestamp("hora"));
+                esp.setId( rs.getInt( "esporte_cod" ));
+                esp.setNome( rs.getString( "nome" ));
+                esp.setQuantidade_pessoas( rs.getInt( "qtd_pessoas" ));
 
         } catch ( SQLException ex ) {
-            throw new RuntimeException( "ERRO AO LISTAR O JOGO: ", ex );
+            throw new RuntimeException( "ERRO AO LISTAR O ESPORTE: ", ex );
         } finally {
             ConnectionFactory.closeConnection( conn, stmt, rs );
         }
         
-        return j;
+        return esp;
 
     } 
-      
+    
 }

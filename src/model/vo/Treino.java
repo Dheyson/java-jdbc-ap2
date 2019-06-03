@@ -1,11 +1,9 @@
-package mvc_template.model.vo;
+package model.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * 
- */
+
 public class Treino {
     
     private int id;
@@ -13,6 +11,16 @@ public class Treino {
     private String turno;
     private int tecnico_id;
     private int esporte_id;
+    private ArrayList<Associado> alunos;
+    //private ArrayList<Matriculas> matriculas;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Date getDia() {
         return dia;
@@ -45,7 +53,13 @@ public class Treino {
     public void setEsporte_id(int esporte_id) {
         this.esporte_id = esporte_id;
     }
-    
-    
-    
+
+    public ArrayList<Associado> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(ArrayList<Associado> alunos) {
+        this.alunos = alunos;
+    }
+ 
 }

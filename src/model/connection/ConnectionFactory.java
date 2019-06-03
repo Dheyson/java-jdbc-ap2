@@ -1,4 +1,4 @@
-package mvc_template.model.connection;
+package model.connection;
 
 
 import java.sql.Connection;

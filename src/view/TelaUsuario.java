@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package mvc_template.view;
+package view;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import mvc_template.model.dao.UsuarioDAO;
-import mvc_template.model.vo.Usuario;
+import model.dao.UsuarioDAO;
+import model.vo.Usuario;
 
 /**
  *

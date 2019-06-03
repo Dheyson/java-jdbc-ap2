@@ -91,10 +91,8 @@
                               <Component id="campoSexo" min="-2" pref="158" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                          <Component id="campoCpf" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="campoCpf" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="119" max="32767" attributes="0"/>
               </Group>

@@ -1,10 +1,11 @@
-package mvc_template.model.dao;
+package model.dao;
 
-import mvc_template.model.connection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
-import mvc_template.model.vo.Usuario;
+import model.connection.ConnectionFactory;
+import model.vo.Usuario;
+
 
 /**
  *

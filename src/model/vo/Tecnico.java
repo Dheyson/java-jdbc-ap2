@@ -1,4 +1,6 @@
-package mvc_template.model.vo;
+package model.vo;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -10,9 +12,19 @@ public class Tecnico {
     private String nome;
     private String sobrenome;
     private String especializacao;
+    private Endereco endereco;
+    private ArrayList<String> telefones;
 
     
     
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -37,19 +49,20 @@ public class Tecnico {
         this.especializacao = especializacao;
     }
 
-    /**
-     * @return the registro
-     */
-    public int getId() {
-        return id;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    /**
-     * @param registro the registro to set
-     */
-    public void setID(int registro) {
-        this.id = registro;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
-    
+
+    public ArrayList<String> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(ArrayList<String> telefones) {
+        this.telefones = telefones;
+    }
     
 }

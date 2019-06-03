@@ -1,6 +1,7 @@
-package mvc_template.model.vo;
+package model.vo;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -8,7 +9,8 @@ public class Jogo {
     
     private int id;
     private Date data;
-    private Timestamp tempo;
+    private Timestamp hora;
+    private ArrayList<Time> times;
     
     
 
@@ -28,12 +30,20 @@ public class Jogo {
         this.data = data;
     }
 
-    public Timestamp getTempo() {
-        return tempo;
+    public Timestamp getHora() {
+        return hora;
     }
 
-    public void setTempo(Timestamp tempo) {
-        this.tempo = tempo;
+    public void setHora(Timestamp hora) {
+        this.hora = hora;
     }
-       
+
+    public ArrayList<Time> getTimes() {
+        return times;
+    }
+
+    public void setTimes(ArrayList<Time> times) {
+        this.times = times;
+    }
+         
 }

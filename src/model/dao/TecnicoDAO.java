@@ -1,4 +1,4 @@
-package mvc_template.model.dao;
+package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -99,7 +99,7 @@ public class TecnicoDAO {
                 
                 Tecnico tec = new Tecnico();
                 
-                tec.setID( rs.getInt("registro"));
+                tec.setId( rs.getInt("registro"));
                 tec.setNome( rs.getString("nome"));
                 tec.setSobrenome( rs.getString("sobrenome"));
                 tec.setEspecializacao( rs.getString("epecializacao"));
@@ -133,7 +133,7 @@ public class TecnicoDAO {
                 
             rs = stmt.executeQuery();
             
-                tec.setID( rs.getInt("registro"));
+                tec.setId( rs.getInt("registro"));
                 tec.setNome( rs.getString("nome"));
                 tec.setSobrenome( rs.getString("sobrenome"));
                 tec.setEspecializacao( rs.getString("epecializacao"));
