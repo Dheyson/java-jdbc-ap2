@@ -5,15 +5,10 @@ import javax.swing.table.DefaultTableModel;
 import model.dao.UsuarioDAO;
 import model.vo.Usuario;
 
-/**
- *
- * @author DHEYSON
- */
+
 public class TelaUsuario extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form TelaUsuario
-     */
+    
     public TelaUsuario() {
         initComponents();
     }
@@ -93,7 +88,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Identificador", "Nome", "Usuario"
+                "Nome", "Usuario", "Senha"
             }
         ));
         jScrollPane1.setViewportView(jTbUsuario);

@@ -45,11 +45,11 @@ public class Login extends javax.swing.JFrame {
                 TelaPrincipal main = new TelaPrincipal();
                 main.setVisible(true);
                 this.dispose();
-            } 
+            } else { 
                 JFrame jf = new JFrame();
                 jf.setAlwaysOnTop(true);
                 JOptionPane.showMessageDialog(jf, "Usuario e/ou Senha inválido(s)");
-            
+            }
             
             stmt.close();
             

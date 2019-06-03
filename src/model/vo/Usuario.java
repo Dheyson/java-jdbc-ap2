@@ -1,13 +1,10 @@
 package model.vo;
 
-/**
- *
- * 
- */
+
 public class Usuario {
     private int id;
     private String nome, login, Senha;
-    private boolean ativo;
+    
 
     public int getId() {
         return id;
@@ -39,14 +36,6 @@ public class Usuario {
 
     public void setSenha(String Senha) {
         this.Senha = Senha;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
     }
     
     
