@@ -16,7 +16,7 @@ public class Tecnico {
     private ArrayList<String> telefones;
 
     
-    
+  
     public int getId() {
         return id;
     }

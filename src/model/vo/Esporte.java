@@ -8,7 +8,7 @@ public class Esporte {
     private int id; 
     private String nome;
     private int quantidade_pessoas;
-    private ArrayList<Treino> teinos;
+    private ArrayList<Treino> treinos;
 
     
     
@@ -36,12 +36,12 @@ public class Esporte {
         this.quantidade_pessoas = quantidade_pessoas;
     }
 
-    public ArrayList<Treino> getTeinos() {
-        return teinos;
+    public ArrayList<Treino> getTreinos() {
+        return treinos;
     }
 
-    public void setTeinos(ArrayList<Treino> teinos) {
-        this.teinos = teinos;
+    public void setTreinos(ArrayList<Treino> teinos) {
+        this.treinos = teinos;
     }
  
 }

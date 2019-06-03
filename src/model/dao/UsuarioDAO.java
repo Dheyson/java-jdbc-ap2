@@ -2,6 +2,9 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.connection.ConnectionFactory;
 import model.vo.Usuario;
@@ -32,5 +35,37 @@ public class UsuarioDAO {
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
+    }
+    
+    public List<Usuario> read() {
+        
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Usuario> lusuarios = new ArrayList<>();
+        
+        try {
+           stmt = con.prepareStatement("SELECT * FROM tbusuarios");
+           rs = stmt.executeQuery();
+           
+            while (rs.next()) {                
+                Usuario usuario = new Usuario();
+                
+                usuario.setId(rs.getInt("userid"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setLogin(rs.getString("login"));
+                usuario.setSenha(rs.getString("senha"));
+                
+                lusuarios.add(usuario);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar!" + e);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return null;
+        
     }
 }

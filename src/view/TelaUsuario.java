@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.dao.UsuarioDAO;
 import model.vo.Usuario;
 
@@ -11,8 +12,29 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     
     public TelaUsuario() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) jTbUsuario.getModel();
+        jTbUsuario.setRowSorter(new TableRowSorter(modelo));
+        
+        readTelaUsuario();
     }
-
+    
+    
+    public void readTelaUsuario() {
+        DefaultTableModel modelo = (DefaultTableModel) jTbUsuario.getModel();
+        modelo.setNumRows(0);
+        UsuarioDAO usuariodao = new UsuarioDAO();
+        
+        for (Usuario u : usuariodao.read()) {
+            
+            modelo.addRow(new Object[] {
+                u.getId(),
+                u.getNome(),
+                u.getLogin(),
+                u.getSenha()
+            });
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,7 +112,15 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             new String [] {
                 "Nome", "Usuario", "Senha"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTbUsuario);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -189,9 +219,13 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         u.setSenha(String.valueOf(txtCadSenha.getPassword()));
         
         dao.create(u);
-//        DefaultTableModel dtnUsuarios = (DefaultTableModel) jTbUsuario.getModel();
-//        Object[] dados = {txtUsuId.getText(), txtCadNomeUsuario.getText(), txtCadUsuario.getText()};
-//        dtnUsuarios.addRow(dados);
+        
+        txtCadNomeUsuario.setText("");
+        txtCadUsuario.setText("");
+        txtCadSenha.setText("");
+        
+        readTelaUsuario();
+
     }//GEN-LAST:event_jBotaoCadUsuarioActionPerformed
 
     private void jBotaoDeletarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoDeletarUsuarioActionPerformed
@@ -204,8 +238,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         }
         
         
-        
-        
+              
     }//GEN-LAST:event_jBotaoDeletarUsuarioActionPerformed
 
 
