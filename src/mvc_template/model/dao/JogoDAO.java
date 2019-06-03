@@ -8,103 +8,105 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.connection.ConnectionFactory;
-import mvc_template.model.vo.Esporte;
+import mvc_template.model.vo.Jogo;
 
 
-public class EsporteDAO {
-   
-    public boolean insert( Esporte esp ) {
+
+public class JogoDAO {
+    
+
+    public boolean insert( Jogo jogo ) {
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         
         try {
-            String slq = "INSERT INTO esporte ( nome, qtd_pessoas ) VALUES( ?, ? )";
+            String slq = "INSERT INTO jogos ( data_camp, hora ) VALUES( ?, ? )";
             stmt = conn.prepareCall(slq);
             
-                stmt.setString( 1, esp.getNome());
-                stmt.setInt( 2, esp.getQuantidade_pessoas());
+                stmt.setDate( 1, (Date) jogo.getData());
+                stmt.setTimestamp( 2, jogo.getTempo());
 
             return !stmt.execute();
             
         } catch (SQLException ex) {
-            throw new RuntimeException( "ERRO AO SALVAR ESPORTE: ", ex );
+            throw new RuntimeException( "ERRO AO SALVAR JOGO: ", ex );
         } finally {
             ConnectionFactory.closeConnection( conn, stmt );
         }    
     }
     
-    public boolean delete( Esporte esp ) {
+    public boolean delete( Jogo jogo ) {
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         
         try {
             
-            String sql = "DELETE FROM esporte WHERE esporte_cod = ?";
+            String sql = "DELETE FROM jogos WHERE id = ?";
             stmt = conn.prepareCall(sql);
-                stmt.setInt( 1 , esp.getId());
+                stmt.setInt( 1 , jogo.getId());
                 
             return !stmt.execute();
             
         } catch ( SQLException ex ) {
-            throw new RuntimeException( "ERRO AO DELETAR ESPORTE: ", ex ); 
+            throw new RuntimeException( "ERRO AO DELETAR JOGO: ", ex ); 
         } finally {
             ConnectionFactory.closeConnection( conn, stmt );
         } 
     }
     
-    public boolean  upDate( Esporte esp ){
+    public boolean  upDate( Jogo jogo ){
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         
         try {
             
-            String sql = "UPDATE esporte SET nome = ?, qtd_pessoas = ?";
+            String sql = "UPDATE jogos SET data_camp = ?, hora = ?";
             stmt = conn.prepareCall(sql);
             
-                stmt.setString( 1, esp.getNome());
-                stmt.setInt( 2, esp.getQuantidade_pessoas());
+                stmt.setDate( 1, (Date) jogo.getData());
+                stmt.setTimestamp( 2, jogo.getTempo());
 
             stmt.executeUpdate();
             return true;
             
         } catch (SQLException ex) {
-            throw new RuntimeException( "ERRO AO ATUALIZAR ESPORTE: ", ex );
+            throw new RuntimeException( "ERRO AO ATUALIZAR JOGO: ", ex );
         } finally {
             ConnectionFactory.closeConnection( conn, stmt );
         } 
     }
     
-    public List<Esporte> listALL() {
+    public List<Jogo> listALL() {
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<Esporte> lista = new ArrayList<>();
+        List<Jogo> lista = new ArrayList<>();
         
         try {
             
-            String sql = "SELECT * FROM esporte";
+            String sql = "SELECT * FROM jogos";
             
             stmt = conn.prepareCall(sql);
             rs = stmt.executeQuery();
             
             while( rs.next() ) {
                 
-                Esporte esp = new Esporte();
+                Jogo j = new Jogo();
                 
-                esp.setId( rs.getInt( "esporte_cod" ));
-                esp.setNome( rs.getString( "nome" ));
-                esp.setQuantidade_pessoas( rs.getInt( "qtd_pessoas" ));
+                j.setId( rs.getInt("cod_camp_id"));
+                j.setData( rs.getDate("data_camp"));
+                j.setTempo( rs.getTimestamp("hora"));
                 
-                lista.add(esp);
+                lista.add(j);
             }
             
         } catch ( SQLException ex ) {
-            throw new RuntimeException( "ERRO AO LISTAR TODOS ESPORTE: ", ex );
+            throw new RuntimeException( "ERRO AO LISTAR TODOS JOGO: ", ex );
         } finally {
             ConnectionFactory.closeConnection( conn, stmt, rs );
         }
@@ -112,35 +114,35 @@ public class EsporteDAO {
         return lista;
     } 
     
-    public Esporte listOne( String id ) {
+    public Jogo listOne( String id ) {
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        Esporte esp = new Esporte();
+        Jogo j = new Jogo();
         
         try {
             
-            String sql = "SELECT * FROM esporte WHERE esporte_cod = ?";
+            String sql = "SELECT * FROM jogos WHERE cod_camp_id = ?";
             
             stmt = conn.prepareCall(sql);
                 stmt.setString( 1, id );
                 
             rs = stmt.executeQuery();
             
-                esp.setId( rs.getInt( "esporte_cod" ));
-                esp.setNome( rs.getString( "nome" ));
-                esp.setQuantidade_pessoas( rs.getInt( "qtd_pessoas" ));
+                j.setId( rs.getInt("cod_camp_id"));
+                j.setData( rs.getDate("data_camp"));
+                j.setTempo( rs.getTimestamp("hora"));
 
         } catch ( SQLException ex ) {
-            throw new RuntimeException( "ERRO AO LISTAR O ESPORTE: ", ex );
+            throw new RuntimeException( "ERRO AO LISTAR O JOGO: ", ex );
         } finally {
             ConnectionFactory.closeConnection( conn, stmt, rs );
         }
         
-        return esp;
+        return j;
 
     } 
-    
+      
 }

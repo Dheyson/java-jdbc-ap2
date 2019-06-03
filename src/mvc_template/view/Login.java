@@ -5,7 +5,7 @@
  */
 package mvc_template.view;
 
-import connection.ConnectionFactory;
+import mvc_template.model.connection.ConnectionFactory;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
