@@ -1,5 +1,7 @@
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DHEYSON
@@ -25,7 +27,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         mainCadastro = new javax.swing.JMenu();
-        mainCadUsuarios = new javax.swing.JMenuItem();
+        jUsuarioMenuItem = new javax.swing.JMenuItem();
         cadAssociados = new javax.swing.JMenuItem();
         cadTecnicos = new javax.swing.JMenuItem();
         cadEsportes = new javax.swing.JMenuItem();
@@ -49,54 +51,58 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 597, Short.MAX_VALUE)
+            .addGap(0, 589, Short.MAX_VALUE)
         );
 
-        mainCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/user_green.png"))); // NOI18N
+        mainCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/user.png"))); // NOI18N
         mainCadastro.setText("Tabelas");
 
-        mainCadUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
-        mainCadUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/user_orange.png"))); // NOI18N
-        mainCadUsuarios.setText("Usuários");
-        mainCadUsuarios.addActionListener(new java.awt.event.ActionListener() {
+        jUsuarioMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
+        jUsuarioMenuItem.setText("Usuarios");
+        jUsuarioMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainCadUsuariosActionPerformed(evt);
+                jUsuarioMenuItemActionPerformed(evt);
             }
         });
-        mainCadastro.add(mainCadUsuarios);
+        mainCadastro.add(jUsuarioMenuItem);
 
         cadAssociados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
-        cadAssociados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/specialist-user.png"))); // NOI18N
+        cadAssociados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/user_red.png"))); // NOI18N
         cadAssociados.setText("Associados");
         mainCadastro.add(cadAssociados);
 
         cadTecnicos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
-        cadTecnicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/user_suit.png"))); // NOI18N
+        cadTecnicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/user_suit.png"))); // NOI18N
         cadTecnicos.setText("Técnico");
         mainCadastro.add(cadTecnicos);
 
         cadEsportes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
-        cadEsportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/sport_soccer.png"))); // NOI18N
+        cadEsportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/sport_soccer.png"))); // NOI18N
         cadEsportes.setText("Esportes");
         mainCadastro.add(cadEsportes);
 
         jMenuBar1.add(mainCadastro);
 
-        mainOpcoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/wrench.png"))); // NOI18N
+        mainOpcoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/wrench.png"))); // NOI18N
         mainOpcoes.setText("Opções");
 
         fecharTela.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        fecharTela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/logout.png"))); // NOI18N
+        fecharTela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/logout.png"))); // NOI18N
         fecharTela.setText("Sair");
+        fecharTela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fecharTelaActionPerformed(evt);
+            }
+        });
         mainOpcoes.add(fecharTela);
 
         jMenuBar1.add(mainOpcoes);
 
-        mainAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/help.png"))); // NOI18N
+        mainAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/information.png"))); // NOI18N
         mainAjuda.setText("Ajuda");
 
         mainSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.ALT_MASK));
-        mainSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/information.png"))); // NOI18N
+        mainSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/help.png"))); // NOI18N
         mainSobre.setText("Sobre");
         mainSobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,13 +134,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mainSobreActionPerformed
 
-    private void mainCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainCadUsuariosActionPerformed
-        // TODO add your handling code here:
-        
+    private void fecharTelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharTelaActionPerformed
+        int out = JOptionPane.showConfirmDialog(null,"Tem certeza que deseja sair?","Atenção",JOptionPane.YES_NO_OPTION);
+        if (out == JOptionPane.YES_OPTION){
+            System.exit(out);
+        }
+    }//GEN-LAST:event_fecharTelaActionPerformed
+
+    private void jUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsuarioMenuItemActionPerformed
         TelaUsuario telaCadUser = new TelaUsuario();
         jDesktopPane1.add(telaCadUser);
-        telaCadUser.setVisible(true);
-    }//GEN-LAST:event_mainCadUsuariosActionPerformed
+        telaCadUser.setVisible(true);   
+    }//GEN-LAST:event_jUsuarioMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,8 +189,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem fecharTela;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jUsuarioMenuItem;
     private javax.swing.JMenu mainAjuda;
-    private javax.swing.JMenuItem mainCadUsuarios;
     private javax.swing.JMenu mainCadastro;
     private javax.swing.JMenu mainOpcoes;
     private javax.swing.JMenuItem mainSobre;

@@ -1,6 +1,5 @@
 package view;
 
-
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,57 +9,54 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.connection.ConnectionFactory;
 
-/**
- *
- * @author DHEYSON
- */
+
 public class Login extends javax.swing.JFrame {
 
     Connection con = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
-    
+
     public Login() {
         initComponents();
-         con = ConnectionFactory.getConnection();
+        con = ConnectionFactory.getConnection();
         if (con != null) {
-            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/statusc.png")));
+            lblstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/statusc.png")));
         } else {
-            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/statusd.png")));
+            lblstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/statusd.png")));
         }
     }
-    
-   public void Logar() {
-       String sql = "SELECT * FROM tbusuarios WHERE login=? and senha=?";
-       
-       try {
+
+    public void Logar() {
+        String sql = "SELECT * FROM tbusuarios WHERE login = ? and senha = ?";
+
+        try {
             con.setAutoCommit(false);
             stmt = con.prepareStatement(sql);
             stmt.setString(1, jUsuarioLogin.getText());
             stmt.setString(2, String.valueOf(jSenhaLogin.getPassword()));
-            
+
             rs = stmt.executeQuery();
-            
+
             if (rs.next()) {
                 TelaPrincipal main = new TelaPrincipal();
                 main.setVisible(true);
                 this.dispose();
-            } else { 
+            } else {
                 JFrame jf = new JFrame();
                 jf.setAlwaysOnTop(true);
                 JOptionPane.showMessageDialog(jf, "Usuario e/ou Senha inválido(s)");
             }
-            
+
             stmt.close();
-            
-       } catch (SQLException e) {
-           System.err.println(e);
+
+        } catch (SQLException e) {
+            System.err.println(e);
             JFrame jf = new JFrame();
-                    jf.setAlwaysOnTop(true);
-                    JOptionPane.showMessageDialog(jf, "Você está desconectado(a)!");
-       }
-   }
-    
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, "Você está desconectado(a)!");
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,12 +69,13 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jUsuarioLogin = new javax.swing.JTextField();
-        lblStatus = new javax.swing.JLabel();
         jBotaoLogin = new javax.swing.JButton();
         jSenhaLogin = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblstatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
         setAlwaysOnTop(true);
         setResizable(false);
 
@@ -94,8 +91,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/statusd.png"))); // NOI18N
-
         jBotaoLogin.setText("Logar");
         jBotaoLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBotaoLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -110,18 +105,20 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc_template/view/icons/logopequena.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/logopequena.png"))); // NOI18N
+
+        lblstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/statusd.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(77, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(100, 100, 100))
+                        .addComponent(jLabel3)
+                        .addGap(112, 112, 112))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -129,23 +126,23 @@ public class Login extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jSenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblstatus)
+                                    .addComponent(jLabel1))
                                 .addGap(18, 18, 18)
-                                .addComponent(jUsuarioLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(69, 69, 69))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(lblStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBotaoLogin)
-                .addGap(79, 79, 79))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jUsuarioLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jBotaoLogin)
+                                        .addGap(10, 10, 10)))))
+                        .addGap(78, 78, 78))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(57, 57, 57)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jUsuarioLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -154,10 +151,10 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jSenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jBotaoLogin)
-                    .addComponent(lblStatus))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(lblstatus))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,7 +165,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jUsuarioLoginActionPerformed
 
     private void jSenhaLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSenhaLoginKeyPressed
-        
+
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Logar();
         }
@@ -206,10 +203,8 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login().setVisible(true);
         });
     }
 
@@ -217,9 +212,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jBotaoLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jSenhaLogin;
     private javax.swing.JTextField jUsuarioLogin;
-    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblstatus;
     // End of variables declaration//GEN-END:variables
 }

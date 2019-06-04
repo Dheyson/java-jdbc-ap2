@@ -7,23 +7,20 @@
         <Menu class="javax.swing.JMenu" name="mainCadastro">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mvc_template/view/icons/user_green.png"/>
+              <Image iconType="3" name="/view/icons/user.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tabelas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mainCadUsuarios">
+            <MenuItem class="javax.swing.JMenuItem" name="jUsuarioMenuItem">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+U"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/mvc_template/view/icons/user_orange.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Usu&#xe1;rios"/>
+                <Property name="text" type="java.lang.String" value="Usuarios"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mainCadUsuariosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jUsuarioMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="cadAssociados">
@@ -32,7 +29,7 @@
                   <KeyStroke key="Alt+A"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/mvc_template/view/icons/specialist-user.png"/>
+                  <Image iconType="3" name="/view/icons/user_red.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Associados"/>
               </Properties>
@@ -43,7 +40,7 @@
                   <KeyStroke key="Alt+T"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/mvc_template/view/icons/user_suit.png"/>
+                  <Image iconType="3" name="/view/icons/user_suit.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="T&#xe9;cnico"/>
               </Properties>
@@ -54,7 +51,7 @@
                   <KeyStroke key="Alt+E"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/mvc_template/view/icons/sport_soccer.png"/>
+                  <Image iconType="3" name="/view/icons/sport_soccer.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Esportes"/>
               </Properties>
@@ -64,7 +61,7 @@
         <Menu class="javax.swing.JMenu" name="mainOpcoes">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mvc_template/view/icons/wrench.png"/>
+              <Image iconType="3" name="/view/icons/wrench.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Op&#xe7;&#xf5;es"/>
           </Properties>
@@ -75,17 +72,20 @@
                   <KeyStroke key="Alt+F4"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/mvc_template/view/icons/logout.png"/>
+                  <Image iconType="3" name="/view/icons/logout.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fecharTelaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mainAjuda">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mvc_template/view/icons/help.png"/>
+              <Image iconType="3" name="/view/icons/information.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ajuda"/>
           </Properties>
@@ -96,7 +96,7 @@
                   <KeyStroke key="Alt+F1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/mvc_template/view/icons/information.png"/>
+                  <Image iconType="3" name="/view/icons/help.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sobre"/>
               </Properties>
@@ -160,7 +160,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="597" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="589" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
