@@ -33,9 +33,9 @@ public class UsuarioDAO {
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar!" + e);
-        } finally {
-            ConnectionFactory.closeConnection(con, stmt);
         }
+        ConnectionFactory.closeConnection(con, stmt);
+
     }
 
     public List<Usuario> read() {
@@ -61,14 +61,13 @@ public class UsuarioDAO {
 
                 lusuarios.add(usuario);
             }
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar!" + e);
-        } finally {
-            ConnectionFactory.closeConnection(con, stmt, rs);
         }
-
-        return null;
-
+        ConnectionFactory.closeConnection(con, stmt, rs);
+    return lusuarios;
+        
     }
 
     public void update(Usuario u) {
@@ -90,13 +89,13 @@ public class UsuarioDAO {
 
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar!" + e);
-        } finally {
-            ConnectionFactory.closeConnection(con, stmt);
         }
+        ConnectionFactory.closeConnection(con, stmt);
+
     }
 
     public void delete(Usuario u) {
-        String sql = "DELETE FROM tbusuarios WHERE id = ?";
+        String sql = "DELETE FROM tbusuarios WHERE userid = ?";
         Connection con = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
@@ -110,9 +109,8 @@ public class UsuarioDAO {
             JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao excluir: " + ex);
-        } finally {
-            ConnectionFactory.closeConnection(con, stmt);
         }
+        ConnectionFactory.closeConnection(con, stmt);
 
     }
 

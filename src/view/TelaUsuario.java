@@ -5,11 +5,16 @@
  */
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import model.connection.ConnectionFactory;
 import model.dao.UsuarioDAO;
 import model.vo.Usuario;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -22,26 +27,6 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
      */
     public TelaUsuario() {
         initComponents();
-        DefaultTableModel modelo = (DefaultTableModel) jTbUsuario.getModel();
-        jTbUsuario.setRowSorter(new TableRowSorter(modelo));
-        
-        readTelaUsuario();
-    }
-
-    public void readTelaUsuario() {
-        DefaultTableModel modelo = (DefaultTableModel) jTbUsuario.getModel();
-        modelo.setNumRows(0);
-        UsuarioDAO usuariodao = new UsuarioDAO();
-
-        for (Usuario u : usuariodao.read()) {
-
-            modelo.addRow(new Object[]{
-                u.getId(),
-                u.getNome(),
-                u.getLogin(),
-                u.getSenha()
-            });
-        }
     }
     
     private void limpaCampos() {
@@ -49,7 +34,34 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         jTxtUsuario.setText(null);
         jTxtSenha.setText(null);
     }
-
+    
+    
+    private void pesquisar_cliente() {
+        String sql = "SELECT * FROM tbusuarios WHERE login LIKE ?";
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, jTxtUsuPesquisa.getText() + "%");
+            rs = stmt.executeQuery();
+            
+            jTbUsuario.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+            System.out.println("Erro: " + e);
+        }
+    }
+    
+    public void setar_campos() {
+        int setar = jTbUsuario.getSelectedRow();
+        
+        jTxtNome.setText(jTbUsuario.getModel().getValueAt(setar, 1).toString());
+        jTxtUsuario.setText(jTbUsuario.getModel().getValueAt(setar, 2).toString());
+        jTxtSenha.setText(jTbUsuario.getModel().getValueAt(setar, 3).toString());
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,6 +82,8 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         jBotaoAdd = new javax.swing.JButton();
         jBotaoAtualizar = new javax.swing.JButton();
         jBotaoDeletar = new javax.swing.JButton();
+        jTxtUsuPesquisa = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -138,12 +152,39 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             }
         });
 
+        jTxtUsuPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTxtUsuPesquisaKeyReleased(evt);
+            }
+        });
+
+        jButton1.setText("botao");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTxtUsuPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jBotaoAdd)
+                            .addGap(76, 76, 76)
+                            .addComponent(jBotaoAtualizar)
+                            .addGap(76, 76, 76)
+                            .addComponent(jBotaoDeletar)
+                            .addGap(138, 138, 138))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(28, 28, 28)))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
+                .addGap(178, 178, 178)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
@@ -153,24 +194,15 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                     .addComponent(jTxtSenha)
                     .addComponent(jTxtUsuario)
                     .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBotaoAdd)
-                        .addGap(76, 76, 76)
-                        .addComponent(jBotaoAtualizar)
-                        .addGap(76, 76, 76)
-                        .addComponent(jBotaoDeletar)
-                        .addGap(138, 138, 138))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtUsuPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -185,7 +217,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBotaoAdd)
                     .addComponent(jBotaoAtualizar)
@@ -209,7 +241,6 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
             limpaCampos();
 
-            readTelaUsuario();
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um usuario para excluir");
         }
@@ -229,7 +260,6 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
         limpaCampos();
 
-        readTelaUsuario();
     }//GEN-LAST:event_jBotaoAtualizarActionPerformed
 
     private void jBotaoAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoAddActionPerformed
@@ -244,34 +274,25 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
         limpaCampos();
 
-        readTelaUsuario();
     }//GEN-LAST:event_jBotaoAddActionPerformed
 
     private void jTbUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTbUsuarioKeyReleased
-
-        if (jTbUsuario.getSelectedRow() != -1) {
-
-            jTxtNome.setText(jTbUsuario.getValueAt(jTbUsuario.getSelectedRow(), 1).toString());
-            jTxtUsuario.setText(jTbUsuario.getValueAt(jTbUsuario.getSelectedRow(), 2).toString());
-            jTxtSenha.setText(jTbUsuario.getValueAt(jTbUsuario.getSelectedRow(), 3).toString());
-        }
-
     }//GEN-LAST:event_jTbUsuarioKeyReleased
 
     private void jTbUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbUsuarioMouseClicked
-        if (jTbUsuario.getSelectedRow() != -1) {
-
-            jTxtNome.setText(jTbUsuario.getValueAt(jTbUsuario.getSelectedRow(), 1).toString());
-            jTxtUsuario.setText(jTbUsuario.getValueAt(jTbUsuario.getSelectedRow(), 2).toString());
-            jTxtSenha.setText(jTbUsuario.getValueAt(jTbUsuario.getSelectedRow(), 3).toString());
-        }
+        setar_campos();
     }//GEN-LAST:event_jTbUsuarioMouseClicked
+
+    private void jTxtUsuPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtUsuPesquisaKeyReleased
+        pesquisar_cliente();
+    }//GEN-LAST:event_jTxtUsuPesquisaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBotaoAdd;
     private javax.swing.JButton jBotaoAtualizar;
     private javax.swing.JButton jBotaoDeletar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -279,6 +300,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTbUsuario;
     private javax.swing.JTextField jTxtNome;
     private javax.swing.JPasswordField jTxtSenha;
+    private javax.swing.JTextField jTxtUsuPesquisa;
     private javax.swing.JTextField jTxtUsuario;
     // End of variables declaration//GEN-END:variables
 }
