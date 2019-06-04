@@ -28,40 +28,40 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     public TelaUsuario() {
         initComponents();
     }
-    
+
     private void limpaCampos() {
         jTxtNome.setText(null);
         jTxtUsuario.setText(null);
         jTxtSenha.setText(null);
     }
-    
-    
+
     private void pesquisar_cliente() {
+
         String sql = "SELECT * FROM tbusuarios WHERE login LIKE ?";
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
+
         try {
-            
+
             stmt = con.prepareStatement(sql);
             stmt.setString(1, jTxtUsuPesquisa.getText() + "%");
             rs = stmt.executeQuery();
-            
+
             jTbUsuario.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             System.out.println("Erro: " + e);
         }
     }
-    
+
     public void setar_campos() {
         int setar = jTbUsuario.getSelectedRow();
-        
+
         jTxtNome.setText(jTbUsuario.getModel().getValueAt(setar, 1).toString());
         jTxtUsuario.setText(jTbUsuario.getModel().getValueAt(setar, 2).toString());
         jTxtSenha.setText(jTbUsuario.getModel().getValueAt(setar, 3).toString());
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,7 +86,9 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
 
         setClosable(true);
-        setMaximizable(true);
+        setIconifiable(true);
+        setTitle("Usuario");
+        setToolTipText("Tela Usuario");
 
         jTbUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

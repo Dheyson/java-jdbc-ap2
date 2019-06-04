@@ -47,11 +47,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 784, Short.MAX_VALUE)
+            .addGap(0, 962, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 589, Short.MAX_VALUE)
+            .addGap(0, 632, Short.MAX_VALUE)
         );
 
         mainCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/user.png"))); // NOI18N
@@ -69,11 +69,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cadAssociados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
         cadAssociados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/user_red.png"))); // NOI18N
         cadAssociados.setText("Associados");
+        cadAssociados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadAssociadosActionPerformed(evt);
+            }
+        });
         mainCadastro.add(cadAssociados);
 
         cadTecnicos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
         cadTecnicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/user_suit.png"))); // NOI18N
         cadTecnicos.setText("Técnico");
+        cadTecnicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadTecnicosActionPerformed(evt);
+            }
+        });
         mainCadastro.add(cadTecnicos);
 
         cadEsportes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
@@ -146,6 +156,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jDesktopPane1.add(telaCadUser);
         telaCadUser.setVisible(true);   
     }//GEN-LAST:event_jUsuarioMenuItemActionPerformed
+
+    private void cadTecnicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadTecnicosActionPerformed
+       TelaTecnico telaTec = new TelaTecnico();
+       jDesktopPane1.add(telaTec);
+       telaTec.setVisible(true);
+        
+    }//GEN-LAST:event_cadTecnicosActionPerformed
+
+    private void cadAssociadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadAssociadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cadAssociadosActionPerformed
 
     /**
      * @param args the command line arguments
