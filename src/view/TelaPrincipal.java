@@ -165,7 +165,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cadTecnicosActionPerformed
 
     private void cadAssociadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadAssociadosActionPerformed
-        // TODO add your handling code here:
+        TelaAssociado telaAssociado = new TelaAssociado();
+        jDesktopPane1.add(telaAssociado);
+        telaAssociado.setVisible(true);
     }//GEN-LAST:event_cadAssociadosActionPerformed
 
     /**
