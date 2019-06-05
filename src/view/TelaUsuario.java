@@ -9,17 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import model.connection.ConnectionFactory;
 import model.dao.UsuarioDAO;
 import model.vo.Usuario;
 import net.proteanit.sql.DbUtils;
 
-/**
- *
- * @author DHEYSON
- */
+
 public class TelaUsuario extends javax.swing.JInternalFrame {
 
     /**

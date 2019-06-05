@@ -12,7 +12,6 @@ public class Associado {
     private String email;
     private Date data_nascimento;
     private char sexo;
-    private Date data_associacao;
     private int times_id;
     private Endereco endereco;
     private ArrayList<String> telefones;
@@ -73,14 +72,6 @@ public class Associado {
 
     public void setSexo(char sexo) {
         this.sexo = sexo;
-    }
-
-    public Date getData_associacao() {
-        return data_associacao;
-    }
-
-    public void setData_associacao(Date data_associacao) {
-        this.data_associacao = data_associacao;
     }
 
     public int getTimes_id() {

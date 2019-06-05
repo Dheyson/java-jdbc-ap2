@@ -174,6 +174,19 @@ CREATE TABLE associado_matricula_treino (
 
 ) DEFAULT CHARSET = utf8mb4;
 
+CREATE TABLE jogos (
+    cod_camp_id INT NOT NULL,
+    data_camp DATE NOT NULL,
+    hora TIMESTAMP,
+    
+    CONSTRAINT pk_jogos
+    PRIMARY KEY(cod_camp_id, hora),
+    
+    CONSTRAINT fk_camp
+    FOREIGN KEY(cod_camp_id) 
+    REFERENCES campeonato(cod_camp)
+) DEFAULT CHARSET = utf8mb4;
+
 CREATE TABLE escala(
     esc_cod INT NOT NULL AUTO_INCREMENT,
     horas TIME NOT NULL,
@@ -208,14 +221,14 @@ CREATE TABLE escala_dias_livres(
 
 
 CREATE TABLE associados_part_camp (
-    id INT NOT NULL,
+    id_cod_ass INT NOT NULL,
     codigo_camp INT NOT NULL,
     
     CONSTRAINT pk_asso_campe
     PRIMARY KEY(id, codigo_camp),
     
     CONSTRAINT fk_asso_camp
-    FOREIGN KEY(id) 
+    FOREIGN KEY(id_cod_ass) 
     REFERENCES associado(id),
 	   
     CONSTRAINT fk_asso_camp
@@ -224,18 +237,7 @@ CREATE TABLE associados_part_camp (
 
 ) DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE jogos (
-    cod_camp_id INT NOT NULL,
-    data_camp DATE NOT NULL,
-    hora TIMESTAMP,
-    
-    CONSTRAINT pk_jogos
-    PRIMARY KEY(cod_camp_id, hora),
-    
-    CONSTRAINT fk_camp
-    FOREIGN KEY(cod_camp_id) 
-    REFERENCES campeonato(cod_camp)
-) DEFAULT CHARSET = utf8mb4;
+
 
 
 
