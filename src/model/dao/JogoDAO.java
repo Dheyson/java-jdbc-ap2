@@ -114,7 +114,7 @@ public class JogoDAO {
         return lista;
     } 
     
-    public Jogo listOne( String id ) {
+    public Jogo listOne( int id ) {
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -124,11 +124,9 @@ public class JogoDAO {
         
         try {
             
-            String sql = "SELECT * FROM jogos WHERE cod_camp_id = ?";
+            String sql = "SELECT * FROM jogos WHERE cod_camp_id = " + id;
             
             stmt = conn.prepareCall(sql);
-                stmt.setString( 1, id );
-                
             rs = stmt.executeQuery();
             
                 j.setId( rs.getInt("cod_camp_id"));

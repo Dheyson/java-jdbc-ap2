@@ -41,10 +41,10 @@ public class ConnectionFactory {
         }
     }
 
-    public static void closeConnection(Connection con, PreparedStatement stat) {
-        if (stat != null) {
+    public static void closeConnection(Connection con, PreparedStatement stmt) {
+        if (stmt != null) {
             try {
-                stat.close();
+                stmt.close();
             } catch (SQLException e) {
                 System.err.println("Erro na Conexão");
                 e.getErrorCode();
@@ -54,7 +54,7 @@ public class ConnectionFactory {
         closeConnection(con);
     }
 
-    public static void closeConnection(Connection con, PreparedStatement stat, ResultSet rs) {
+    public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs) {
         if (rs != null) {
             try {
                 rs.close();
@@ -64,6 +64,6 @@ public class ConnectionFactory {
 
             }
         }
-        closeConnection(con, stat);
+        closeConnection(con, stmt);
     }
 }

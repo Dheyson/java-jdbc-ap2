@@ -153,5 +153,45 @@ public class AssociadoDAO {
         return a;
 
     }
+    
+    
+    public List<Associado> nameList( String nome ) {
+
+        Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Associado> lista = new ArrayList<>();
+
+        try {
+
+            String sql = "SELECT * FROM associado WHERE nome LIKE '%"+nome+"%' ";
+
+            stmt = conn.prepareCall(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Associado a = new Associado();
+
+                a.setCpf(rs.getNString("cpf"));
+                a.setNome(rs.getNString("nome"));
+                a.setSobrenome(rs.getNString("sobrenome"));
+                a.setData_nascimento(rs.getDate("data_nascimento"));
+                a.setSexo(rs.getNString("cpf").charAt(0));
+                a.setEmail(rs.getNString("email"));
+
+                lista.add(a);
+            }
+
+        } catch (SQLException ex) {
+            throw new RuntimeException("ERRO AO LISTAR POR NOME DO ASSOCIADO: ", ex);
+        } finally {
+            ConnectionFactory.closeConnection(conn, stmt, rs);
+        }
+
+        return lista;
+    }
+    
 
 }

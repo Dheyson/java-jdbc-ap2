@@ -56,7 +56,7 @@ public class TecnicoDAO {
         } 
     }
     
-    public boolean  upDate( Tecnico tec ){
+    public boolean upDate( Tecnico tec ){
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -146,6 +146,43 @@ public class TecnicoDAO {
         
         return tec;
 
+    } 
+    
+    
+    public List<Tecnico> nameList( String nome ) {
+        
+        Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Tecnico> lista = new ArrayList<>();
+        
+        try {
+            
+            String sql = "SELECT * FROM tecnico WHERE nome LIKE '%"+ nome  +"%' ";
+            
+            stmt = conn.prepareCall(sql);
+            rs = stmt.executeQuery();
+            
+            while( rs.next() ) {
+                
+                Tecnico tec = new Tecnico();
+                
+                tec.setId( rs.getInt("registro"));
+                tec.setNome( rs.getString("nome"));
+                tec.setSobrenome( rs.getString("sobrenome"));
+                tec.setEspecializacao( rs.getString("epecializacao"));
+                
+                lista.add(tec);
+            }
+            
+        } catch ( SQLException ex ) {
+            throw new RuntimeException( "ERRO AO LISTAR POR NOME DO TÉCNICO: ", ex );
+        } finally {
+            ConnectionFactory.closeConnection( conn, stmt, rs );
+        }
+        
+        return lista;
     } 
     
 }

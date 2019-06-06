@@ -6,12 +6,31 @@ package model.vo;
  */
 public class Endereco {
     
-    private String estado;
-    private String cidade;
-    private String cep;
-    private String bairro;
+    private String logadouro;
     private String numero;
+    private String bairro;
+    private String cidade;
+    private String estado;
+    private String cep;
 
+    public Endereco(String logadouro, String numero, String bairro, String cidade, String estado, String cep) {
+        this.logadouro = logadouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+    }
+
+    public String getLogadouro() {
+        return logadouro;
+    }
+
+    public void setLogadouro(String logadouro) {
+        this.logadouro = logadouro;
+    }
+
+    
     
     
     public String getEstado() {

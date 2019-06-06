@@ -112,7 +112,7 @@ public class EsporteDAO {
         return lista;
     } 
     
-    public Esporte listOne( String id ) {
+    public Esporte listOne( String nome ) {
         
         Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -122,11 +122,9 @@ public class EsporteDAO {
         
         try {
             
-            String sql = "SELECT * FROM esporte WHERE esporte_cod = ?";
+            String sql = "SELECT * FROM esporte WHERE esporte_cod = '"+nome+"'";
             
             stmt = conn.prepareCall(sql);
-                stmt.setString( 1, id );
-                
             rs = stmt.executeQuery();
             
                 esp.setId( rs.getInt( "esporte_cod" ));

@@ -97,10 +97,15 @@ public class TelaAssociado extends javax.swing.JInternalFrame {
         jLabel5.setText("Sexo:");
 
         campoSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "M", "F" }));
+        campoSexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoSexoActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Email:");
 
-        jLabel8.setText("Telefone 1:");
+        jLabel8.setText("Telefone:");
 
         try {
             txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
@@ -143,7 +148,7 @@ public class TelaAssociado extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(24, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +206,7 @@ public class TelaAssociado extends javax.swing.JInternalFrame {
 
         jLabel14.setText("Bairro:");
 
-        jLabel15.setText("Rua:");
+        jLabel15.setText("Logradouro:");
 
         jLabel16.setText("Número:");
 
@@ -266,7 +271,7 @@ public class TelaAssociado extends javax.swing.JInternalFrame {
         );
 
         btnSalvar.setText("Salvar");
-        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -363,26 +368,25 @@ public class TelaAssociado extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Associado vo = new Associado();
         AssociadoDAO dao = new AssociadoDAO();
-        Endereco endereco_vo = new Endereco();
 
         vo.setCpf(campoCpf.getText());
         vo.setNome(txtNome.getText());
         vo.setSobrenome(txtSobrenome.getText());
         vo.setEmail(txtEmail.getText());
         vo.setData_nascimento((Date) campoData.getValue());
-        // vo.setSexo(campoSexo.getToolTipText());
-        // vo.setEndereco(endereco_vo.setCep(txtCep.getText()));
+        vo.setSexo(campoSexo.getName().charAt(0));
+        vo.setEndereco(new Endereco(txtRua.getText(), txtNumero.getText(), txtBairro.getText(), txtCidade.getText(), txtEstado.getText(), txtNumero.getText()));
+        
 
         dao.insert(vo);
 
-        JOptionPane.showMessageDialog(null, "Nome: " + txtNome.getText() + "Sexo: " + campoSexo.getSelectedItem());
+        // JOptionPane.showMessageDialog(null, "Nome: " + txtNome.getText() + "Sexo: " + campoSexo.getSelectedItem());
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         Associado vo = new Associado();
         AssociadoDAO dao = new AssociadoDAO();
-        Endereco endereco_vo = new Endereco();
 
         vo.setCpf(campoCpf.getText());
         vo.setNome(txtNome.getText());
@@ -392,6 +396,10 @@ public class TelaAssociado extends javax.swing.JInternalFrame {
 
         dao.upDate(vo);
     }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void campoSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSexoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoSexoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
