@@ -5,10 +5,8 @@
  */
 package view;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
+import java.sql.*;
+import javax.swing.*;
 import model.connection.ConnectionFactory;
 import model.dao.UsuarioDAO;
 import model.vo.Usuario;
@@ -16,6 +14,10 @@ import net.proteanit.sql.DbUtils;
 
 
 public class TelaUsuario extends javax.swing.JInternalFrame {
+
+    public JButton getjBotaoAdd() {
+        return jBotaoAdd;
+    }
 
     /**
      * Creates new form TelaUsuario

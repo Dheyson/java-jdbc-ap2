@@ -33,8 +33,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cadEsportes = new javax.swing.JMenuItem();
         mainOpcoes = new javax.swing.JMenu();
         fecharTela = new javax.swing.JMenuItem();
-        mainAjuda = new javax.swing.JMenu();
-        mainSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -51,7 +49,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 632, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
 
         mainCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/user.png"))); // NOI18N
@@ -108,21 +106,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mainOpcoes);
 
-        mainAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/information.png"))); // NOI18N
-        mainAjuda.setText("Ajuda");
-
-        mainSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.ALT_MASK));
-        mainSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/help.png"))); // NOI18N
-        mainSobre.setText("Sobre");
-        mainSobre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainSobreActionPerformed(evt);
-            }
-        });
-        mainAjuda.add(mainSobre);
-
-        jMenuBar1.add(mainAjuda);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,14 +123,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mainSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSobreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mainSobreActionPerformed
-
     private void fecharTelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharTelaActionPerformed
-        int out = JOptionPane.showConfirmDialog(null,"Tem certeza que deseja sair?","Atenção",JOptionPane.YES_NO_OPTION);
+        Login telaLogin = new Login();
+        // TelaUsuario telaUser = new TelaUsuario();
+        int out = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Atenção", JOptionPane.YES_NO_OPTION);
         if (out == JOptionPane.YES_OPTION){
-            System.exit(out);
+            telaLogin.setVisible(true);
         }
     }//GEN-LAST:event_fecharTelaActionPerformed
 
@@ -213,9 +194,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jUsuarioMenuItem;
-    private javax.swing.JMenu mainAjuda;
     private javax.swing.JMenu mainCadastro;
     private javax.swing.JMenu mainOpcoes;
-    private javax.swing.JMenuItem mainSobre;
     // End of variables declaration//GEN-END:variables
 }

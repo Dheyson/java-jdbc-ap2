@@ -1,20 +1,14 @@
 package model.dao;
 
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.connection.ConnectionFactory;
 import model.vo.Usuario;
 
-/**
- *
- * @author DHEYSON
- */
+
 public class UsuarioDAO {
 
     public void create(Usuario u) {

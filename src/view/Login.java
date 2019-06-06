@@ -1,12 +1,8 @@
 package view;
 
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import java.sql.*;
+import javax.swing.*;
 import model.connection.ConnectionFactory;
 
 
@@ -27,13 +23,13 @@ public class Login extends javax.swing.JFrame {
     }
 
     public void Logar() {
-        String sql = "SELECT * FROM tbusuarios WHERE login = ? and senha = ?";
+        String sql = "SELECT * FROM tbusuarios WHERE login = ? AND senha = ?";
 
         try {
             con.setAutoCommit(false);
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, jUsuarioLogin.getText());
-            stmt.setString(2, String.valueOf(jSenhaLogin.getPassword()));
+            stmt.setString(1, getjUsuarioLogin().getText());
+            stmt.setString(2, String.valueOf(getjSenhaLogin().getPassword()));
 
             rs = stmt.executeQuery();
 
@@ -217,4 +213,16 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jUsuarioLogin;
     private javax.swing.JLabel lblstatus;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getjBotaoLogin() {
+        return jBotaoLogin;
+    }
+
+    public JPasswordField getjSenhaLogin() {
+        return jSenhaLogin;
+    }
+
+    public JTextField getjUsuarioLogin() {
+        return jUsuarioLogin;
+    }
 }
