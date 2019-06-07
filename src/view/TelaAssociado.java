@@ -364,7 +364,14 @@ public class TelaAssociado extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void limparCampos() {
+        campoCpf.setText(null);
+        txtNome.setText(null);
+        txtSobrenome.setText(null);
+        txtEmail.setText(null);
+    }
+    
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Associado vo = new Associado();
         AssociadoDAO dao = new AssociadoDAO();
@@ -383,7 +390,8 @@ public class TelaAssociado extends javax.swing.JInternalFrame {
         // JOptionPane.showMessageDialog(null, "Nome: " + txtNome.getText() + "Sexo: " + campoSexo.getSelectedItem());
 
     }//GEN-LAST:event_btnSalvarActionPerformed
-
+    
+    
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         Associado vo = new Associado();
         AssociadoDAO dao = new AssociadoDAO();
@@ -393,7 +401,9 @@ public class TelaAssociado extends javax.swing.JInternalFrame {
         vo.setSobrenome(txtSobrenome.getText());
         vo.setEmail(txtEmail.getText());
         vo.setData_nascimento((Date) campoData.getValue());
-
+        
+        limparCampos();
+        
         dao.upDate(vo);
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
